@@ -132,17 +132,6 @@ class _EditorWithButtonsState extends State<EditorWithButtons> {
                     onCompileAndRun: widget.onCompileAndRun,
                   ),
                 ),
-                _GeminiCodeEditTool(
-                  appModel: widget.appModel,
-                  enabled: widget.appModel.genAiManager.activity.value == null,
-                  showCodeEditTool: widget.showCodeEditTool,
-                  onUpdateCode: _requestGeminiCodeUpdate,
-                  onAcceptUpdateCode: _handleAcceptUpdateCode,
-                  onCancelUpdateCode: _handleCancelUpdateCode,
-                  onUpdateCodePrompt: _handleUpdateCodePrompt,
-                  onRejectSuggestedCode: _handleRejectSuggestedCode,
-                  changePromptFocusNode: _changePromptFocusNode,
-                ),
                 MultiValueListenableBuilder(
                   listenables: [
                     widget.appModel.analysisIssues,

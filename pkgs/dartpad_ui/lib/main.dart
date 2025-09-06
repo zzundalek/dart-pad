@@ -659,15 +659,9 @@ class DartPadAppBar extends StatelessWidget implements PreferredSizeWidget {
                 // Hide new snippet buttons when the screen width is too small.
                 if (wideLayout) ...[
                   const SizedBox(width: defaultSpacing * 4),
-                  NewSnippetWidget(appServices: appServices),
-                  ...geminiMenuWidgets(denseSpacing),
-                  const SizedBox(width: denseSpacing),
                   const ListSamplesWidget(),
                 ] else ...[
                   const SizedBox(width: defaultSpacing),
-                  NewSnippetWidget(appServices: appServices, hideLabel: true),
-                  ...geminiMenuWidgets(defaultSpacing, hideLabel: true),
-                  const SizedBox(width: denseSpacing),
                   const ListSamplesWidget(hideLabel: true),
                 ],
 
