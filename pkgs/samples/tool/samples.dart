@@ -38,7 +38,7 @@ void main(List<String> args) {
   }
 }
 
-const Set<String> categories = {'Defaults', 'Dart', 'Flutter', 'Ecosystem'};
+const Set<String> categories = {'Dart', 'Flutter'};
 
 class Samples {
   late final List<Sample> samples;
