@@ -529,6 +529,7 @@ enum Channel {
   stable('Stable', 'https://stable.api.dartpad.dev/'),
   beta('Beta', 'https://beta.api.dartpad.dev/'),
   main('Main', 'https://master.api.dartpad.dev/'),
+  zodart('ZodArt', 'https://master.api.dartpad.dev/'), // TODO(zzundalek) fix the url
   // This channel is only used for local development.
   localhost('Localhost', 'http://$localhostIp:8080/');
 
@@ -537,10 +538,14 @@ enum Channel {
 
   const Channel(this.displayName, this.url);
 
-  static const defaultChannel = Channel.stable;
+  static const defaultChannel = Channel.zodart;
 
   static List<Channel> get valuesWithoutLocalhost {
     return values.whereNot((channel) => channel == localhost).toList();
+  }
+
+  static List<Channel> get valuesForZodArt {
+    return values.where((channel) => channel == zodart).toList();
   }
 
   static Channel? forName(String name) {

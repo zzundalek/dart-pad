@@ -648,25 +648,8 @@ class DartPadAppBar extends StatelessWidget implements PreferredSizeWidget {
             height: toolbarItemHeight,
             child: Row(
               children: [
-                const Logo(width: 32, type: 'dart'),
-                const SizedBox(width: denseSpacing),
-                Text(
-                  appName,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
-                ),
-                // Hide new snippet buttons when the screen width is too small.
-                if (wideLayout) ...[
-                  const SizedBox(width: defaultSpacing * 4),
-                  const ListSamplesWidget(),
-                ] else ...[
-                  const SizedBox(width: defaultSpacing),
-                  const ListSamplesWidget(hideLabel: true),
-                ],
-
+                const ListSamplesWidget(),
                 const SizedBox(width: defaultSpacing),
-                // Hide the snippet title when the screen width is too small.
                 if (wideLayout)
                   Expanded(
                     child: Center(
@@ -682,14 +665,10 @@ class DartPadAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           bottom: bottom,
           actions: [
-            // Hide the Install SDK button when the screen width is too small.
-            if (constraints.maxWidth >= minLargeScreenWidth)
-              ContinueInMenu(openInFirebaseStudio: _openInFirebaseStudio),
             const SizedBox(width: denseSpacing),
             _BrightnessButton(
               handleBrightnessChange: widget.handleBrightnessChanged,
             ),
-            const OverflowMenu(),
           ],
         );
       },
@@ -751,39 +730,7 @@ class StatusLineWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: defaultSpacing),
-          if (!mobileVersion)
-            TextButton(
-              onPressed: () {
-                const url = 'https://dart.dev/tools/dartpad/privacy';
-                url_launcher.launchUrl(Uri.parse(url));
-              },
-              child: const Row(
-                children: [
-                  Text('Privacy notice'),
-                  SizedBox(width: denseSpacing),
-                  Icon(Icons.launch, size: iconSizeSmall),
-                ],
-              ),
-            ),
-          const SizedBox(width: defaultSpacing),
-          if (!mobileVersion)
-            TextButton(
-              onPressed: () {
-                const url = 'https://github.com/dart-lang/dart-pad/issues';
-                url_launcher.launchUrl(Uri.parse(url));
-              },
-              child: const Row(
-                children: [
-                  Text('Feedback'),
-                  SizedBox(width: denseSpacing),
-                  Icon(Icons.launch, size: iconSizeSmall),
-                ],
-              ),
-            ),
           const Expanded(child: SizedBox(width: defaultSpacing)),
-          VersionInfoWidget(appModel.runtimeVersions),
-          const SizedBox(width: denseSpacing),
           SelectChannelWidget(hideLabel: mobileVersion),
         ],
       ),
@@ -884,7 +831,7 @@ class SelectChannelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appServices = Provider.of<AppServices>(context);
-    final channels = Channel.valuesWithoutLocalhost;
+    final channels = Channel.valuesForZodArt;
 
     return ValueListenableBuilder<Channel>(
       valueListenable: appServices.channel,
