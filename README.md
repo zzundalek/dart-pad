@@ -18,11 +18,33 @@ and Flutter. You can access it at [dartpad.dev](http://dartpad.dev).
 
 # Running locally
 
+## FE
+
 ```shell
 cd pkgs/dartpad_ui
 flutter run -d chrome --web-port 8888 --web-browser-flag "--disable-web-security" \
       --web-launch-url "http://localhost:8888/?channel=localhost&sample=zodart"
 ```
+
+## BE
+
+> To update packages on BE run: \
+> `dart tool/grind.dart build-project-templates` \
+> `dart tool/grind.dart build-storage-artifacts`
+
+```shell
+cd pkgs/dart_services
+FLUTTER_ROOT="~/fvm/versions/3.35.1" dart  bin/server.dart
+```
+
+# Embedding
+
+More on: https://github.com/dart-lang/dart-pad/wiki/Sharing-Guide
+
+`http://localhost:8888/?channel=localhost&sample=zodart&embed=true&run=true`
+
+`http://localhost:8888/?id=5c0e154dd50af4a9ac856908061291bc&channel=localhost&embed=true&run=true`
+
 
 ## License
 

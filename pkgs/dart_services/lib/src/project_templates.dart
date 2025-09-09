@@ -122,6 +122,7 @@ const Set<String> supportedBasicDartPackages = {
   'web',
   'yaml',
   'yaml_edit',
+  'zodart',
 };
 
 /// The set of all packages whose support in DartPad is deprecated.
