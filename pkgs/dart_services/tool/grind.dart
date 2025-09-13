@@ -18,6 +18,12 @@ import 'package:http/http.dart' as http;
 import 'package:package_config/package_config.dart';
 import 'package:path/path.dart' as path;
 
+/// Override the channel to always return 'stable'
+// TODO
+extension SdxExt on Sdk {
+  String get channel => 'stable';
+}
+
 Future<void> main(List<String> args) async {
   return grind(args);
 }
@@ -48,6 +54,7 @@ void validateStorageArtifacts() async {
   );
 
   final urlBase = 'https://storage.googleapis.com/$bucket/';
+    // final urlBase = 'http://127.0.0.1:8081/'; // TODO
   for (final artifact
       in sdk.useNewDdcSdk ? compilationArtifactsNew : compilationArtifacts) {
     await _validateExists(Uri.parse('$urlBase$version/$artifact'));
@@ -84,7 +91,7 @@ void buildProjectTemplates() async {
     sdk,
     templatesPath,
     dartLanguageVersion: sdk.dartVersion,
-    dependenciesFile: _pubDependenciesFile(channel: sdk.channel),
+    dependenciesFile: _pubDependenciesFile(channel: 'stable'),
     log: log,
   );
   await projectCreator.buildDartProjectTemplate();
@@ -104,7 +111,7 @@ void buildStorageArtifacts() async {
 
   try {
     instructions.add(
-      await _buildStorageArtifacts(temp, sdk, channel: sdk.channel),
+      await _buildStorageArtifacts(temp, sdk, channel: 'stable'),
     );
   } finally {
     temp.deleteSync(recursive: true);
@@ -340,7 +347,7 @@ Future<void> _run(
 @Task('Update pubspec dependency versions')
 void updatePubDependencies() async {
   final sdk = Sdk.fromLocalFlutter();
-  await _updateDependenciesFile(channel: sdk.channel, sdk: sdk);
+  await _updateDependenciesFile(channel: 'stable', sdk: sdk);
 }
 
 /// Updates the "dependencies file".

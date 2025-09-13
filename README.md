@@ -46,7 +46,54 @@ More on: https://github.com/dart-lang/dart-pad/wiki/Sharing-Guide
 `http://localhost:8888/?id=5c0e154dd50af4a9ac856908061291bc&channel=localhost&embed=true&run=true`
 
 
+# Building
+
+# BUILD:
+
+docker buildx build \
+  --platform linux/amd64 \
+  --build-arg BUILD_SHA=$(git rev-parse --short HEAD) \
+  -f pkgs/dart_services/Dockerfile \
+  -t gcr.io/zodart-pad/zodart-pad:latest .
+
+# INSPECT:
+
+docker run --rm -it -p 8080:8080 --entrypoint /bin/sh gcr.io/zodart-pad/zodart-pad:latest
+
+# RUN
+
+docker run --rm -it -p 8080:8080 gcr.io/zodart-pad/zodart-pad:latest
+
+
 ## License
 
 You can view the license
 [here](https://github.com/dart-lang/dart-pad/blob/main/LICENSE).
+
+
+### TODO
+
+```shell
+docker build \
+  --build-arg BUILD_SHA=$(git rev-parse --short HEAD) \
+  -t gcr.io/zodart-pad/zodart-pad:latest .
+
+# BUILD:
+
+docker buildx build \
+  --platform linux/amd64 \
+  --build-arg BUILD_SHA=$(git rev-parse --short HEAD) \
+  -f pkgs/dart_services/Dockerfile \
+  -t gcr.io/zodart-pad/zodart-pad:latest .
+
+# INSPECT:
+
+docker run --rm -it -p 8080:8080 --entrypoint /bin/sh gcr.io/zodart-pad/zodart-pad:latest
+
+# RUN
+
+docker run --rm -it -p 8080:8080 gcr.io/zodart-pad/zodart-pad:latest
+
+# SHARE artifacts
+npx http-server .
+```
