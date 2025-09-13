@@ -8,7 +8,7 @@
   {
     "category": "Flutter",
     "icon": "flutter",
-    "name": "Counter",
-    "path": "lib/main.dart"
+    "name": "ZodArt form",
+    "path": "lib/zodart_form.dart"
   }
 ]

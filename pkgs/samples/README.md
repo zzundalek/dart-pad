@@ -8,7 +8,7 @@ Sample code snippets for DartPad.
 | Category | Name | Sample | ID |
 | --- | --- | --- | --- |
 | Dart | ZodArt | [zodart.dart](lib/zodart.dart) | `zodart` |
-| Flutter | Counter | [main.dart](lib/main.dart) | `counter` |
+| Flutter | ZodArt form | [zodart_form.dart](lib/zodart_form.dart) | `zodart-form` |
 <!-- samples -->
 
 ## Contributing
